@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.disposables.Disposables
 import java.util.concurrent.TimeUnit
 
@@ -20,6 +19,13 @@ internal class CounterViewModel : ViewModel() {
 
     init {
         mutableLiveData.value = defaultState
+        debug("init $this")
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        disposable.dispose()
+        debug("onCleared $this")
     }
 
     fun triggerCounter() {
@@ -51,7 +57,7 @@ internal class CounterViewModel : ViewModel() {
         mutableLiveData.value = currentState().copy(counterRunning = false)
     }
 
-    private fun currentState() : State {
+    private fun currentState(): State {
         return mutableLiveData.value ?: State()
     }
 

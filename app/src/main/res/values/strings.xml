@@ -3,4 +3,6 @@
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="reset">Reset</string>
+    <string name="title_counter_list">Counters</string>
+    <string name="title_counter_detail">Counter Detail</string>
 </resources>
